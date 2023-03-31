@@ -31,12 +31,12 @@ app.listen(process.env.APP_PORT, () => {
   console.log("Start on port: ", process.env.APP_PORT);
 });
 
-app.get(
-  "/.well-known/pki-validation/34161ED54DE061D74A08AF604B21F292.txt",
-  (req, res) => {
-    res.sendFile("/task4-server/34161ED54DE061D74A08AF604B21F292.txt");
-  }
-);
+// app.get(
+//   "/.well-known/pki-validation/34161ED54DE061D74A08AF604B21F292.txt",
+//   (req, res) => {
+//     res.sendFile("/task4-server/34161ED54DE061D74A08AF604B21F292.txt");
+//   }
+// );
 
 // const httpsServer = https.createServer(cred, app)
 // httpsServer.listen(443)
@@ -87,11 +87,11 @@ app.get(
 //   }
 // );
 
-// app.get('*', function(req, res) {
-//   res.redirect('http://' + req.headers.host + req.url);
-// });
+app.get("*", function (req, res) {
+  res.redirect("http://" + req.headers.host + req.url);
+});
 
-// app.listen(80);
+app.listen(80);
 
 // // const httpsServer = https.createServer(cred, app)
 // // httpsServer.listen(443)
