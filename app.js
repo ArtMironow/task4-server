@@ -5,12 +5,12 @@ const https = require("https");
 
 const cors = require("cors");
 
-const file = fs.readFileSync(
-  "/home/ubuntu/task4-server/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
-);
+// const file = fs.readFileSync(
+//   "/home/ubuntu/task4-server/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
+// );
 
-//const key = fs.readFileSync("private.key")
-//const cert = fs.readFileSync("certificate.crt")
+const key = fs.readFileSync("/home/ubuntu/task4-server/private.key");
+const cert = fs.readFileSync("/home/ubuntu/task4-server/certificate.crt");
 
 const app = express();
 const userRouter = require("./api/users/user.router");
@@ -19,10 +19,10 @@ const userRouter = require("./api/users/user.router");
 //   origin: "http://localhost:8081",
 // };
 
-//const cred = {
-//  key,
-//  cert
-//}
+const cred = {
+  key,
+  cert,
+};
 
 //app.use(cors(corsOptions));
 app.use(cors());
@@ -34,14 +34,14 @@ app.listen(process.env.APP_PORT, () => {
   console.log("Start on port: ", process.env.APP_PORT);
 });
 
-app.get(
-  "/.well-known/pki-validation/2E241B0E1E489A3BE53BDC749CD3D57C.txt",
-  (req, res) => {
-    res.sendFile(
-      "/home/ubuntu/task4-server/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
-    );
-  }
-);
+// app.get(
+//   "/.well-known/pki-validation/2E241B0E1E489A3BE53BDC749CD3D57C.txt",
+//   (req, res) => {
+//     res.sendFile(
+//       "/home/ubuntu/task4-server/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
+//     );
+//   }
+// );
 
 // const httpsServer = https.createServer(cred, app)
 // httpsServer.listen(443)
@@ -98,5 +98,5 @@ app.get("*", function (req, res) {
 
 app.listen(80);
 
-// // const httpsServer = https.createServer(cred, app)
-// // httpsServer.listen(443)
+const httpsServer = https.createServer(cred, app);
+httpsServer.listen(443);
