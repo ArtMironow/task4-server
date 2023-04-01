@@ -6,7 +6,7 @@ const https = require("https");
 const cors = require("cors");
 
 const file = fs.readFileSync(
-  "/home/ubuntu/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
+  "/home/ubuntu/task4-server/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
 );
 
 //const key = fs.readFileSync("private.key")
@@ -37,7 +37,9 @@ app.listen(process.env.APP_PORT, () => {
 app.get(
   "/.well-known/pki-validation/2E241B0E1E489A3BE53BDC749CD3D57C.txt",
   (req, res) => {
-    res.sendFile("/home/ubuntu/2E241B0E1E489A3BE53BDC749CD3D57C.txt");
+    res.sendFile(
+      "/home/ubuntu/task4-server/2E241B0E1E489A3BE53BDC749CD3D57C.txt"
+    );
   }
 );
 
